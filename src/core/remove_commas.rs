@@ -1,19 +1,19 @@
 use super::Tool;
 pub struct RemoveCommas;
 impl Tool for RemoveCommas {
-    fn route(&self) -> &'static str {
+    fn get_route(&self) -> &'static str {
         "/remove_commas"
     }
-    fn getName(&self) -> &'static str {
+    fn get_name(&self) -> &'static str {
         "پاک کردن کاما ها از یک رشته"
     }
-    fn getDescription(&self) -> &'static str {
+    fn get_description(&self) -> &'static str {
         ""
     }
-    fn getDocPath(&self) -> &'static str {
+    fn get_doc_path(&self) -> &'static str {
         "commas/remove_commas"
     }
-    fn getTags(&self) -> Vec<&'static str> {
+    fn get_tags(&self) -> Vec<&'static str> {
         vec!["کاما", "عدد", "خوانایی"]
     }
     fn exe(&self, input: String) -> Result<String, String> {
