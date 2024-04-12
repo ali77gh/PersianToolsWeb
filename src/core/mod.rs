@@ -20,6 +20,7 @@ pub trait Tool {
 
 pub fn get_all_tools() -> [Box<dyn Tool>; 2] {
     [
+        //TODO sort by usage
         Box::new(crate::core::add_commas::AddCommas),
         Box::new(crate::core::remove_commas::RemoveCommas),
     ]

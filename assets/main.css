@@ -3,8 +3,15 @@
     padding: 0px;
 }
 
-.home{
-    background: linear-gradient(0deg, rgba(205,55,0,1) 0%, rgba(244,146,0,1) 35%);
+.rust-gradient{
+    background: linear-gradient(-30deg, rgba(205,55,0,1) 0%, rgba(244,146,0,1) 35%);
 }
 
+.top-bar-grad{
+    background: linear-gradient(45deg, rgb(58, 88, 255) 0%, rgb(40, 61, 178) 50%);
+}
 
+.debug-color{
+    /* Unity game engine is also using pink for debug */
+    background: rgb(232, 59, 194); 
+} 

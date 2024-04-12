@@ -1,5 +1,5 @@
-use crate::ui::home::Blog;
 use crate::ui::home::Home;
+use crate::ui::tool::Tool;
 use dioxus::prelude::*;
 
 #[derive(Clone, Routable, Debug, PartialEq)]
@@ -8,5 +8,5 @@ pub enum Route {
     Home {},
 
     #[route("/tool/:name")]
-    Blog { name: String },
+    Tool { name: String },
 }
