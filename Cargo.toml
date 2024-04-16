@@ -10,6 +10,7 @@ edition = "2021"
 
 dioxus = { version = "0.5", features = ["web", "router"] }
 rust-persian-tools = { version = "1.1.2", features = ["full"] }
+lazy_static = "1.4.0"
 
 # Debug
 log = "0.4.19"
