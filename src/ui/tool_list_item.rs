@@ -19,7 +19,9 @@ pub fn ToolListItem(props: ToolWrapper) -> Element {
         .join(", ");
 
     rsx! {
-        div { dir: "rtl", class: "max-w-sm rounded  shadow-lg bg-white m-5 p-5",
+        div {
+            dir: "rtl",
+            class: "max-w-2xl rounded  shadow-lg bg-white m-5 p-5",
             div { class: "font-bold text-xl mb-2", "{tool.name}" }
             div { class: "text-gray-700 text-base mb-3", "{tool.description}" }
             div { "{tags}" }
