@@ -10,6 +10,7 @@ pub struct Tool {
     pub doc_path: &'static str, // expand to see
     pub route: &'static str,
     pub doc_link: String,
+    pub sample_input: &'static str,
 }
 
 // route, doc_path, exe,  name, tags, description
@@ -18,6 +19,7 @@ impl Tool {
         route: &'static str,
         doc_path: &'static str,
         exe: EXE,
+        sample_input: &'static str,
         name: &'static str,
         tags: Vec<&'static str>,
         description: &'static str,
@@ -34,6 +36,7 @@ impl Tool {
             doc_path,
             route,
             doc_link,
+            sample_input,
         }
     }
 }

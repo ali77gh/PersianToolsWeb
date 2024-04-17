@@ -23,7 +23,7 @@ pub fn SearchTool() -> Element {
             input {
                 dir: "rtl",
                 class: "rounded shadow-lg bg-white m-5 p-3",
-                placeholder: "جست و جو",
+                placeholder: "جستجو",
                 value: "{input_search}",
                 oninput: move |event| input_search.set(event.value())
             }
