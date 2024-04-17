@@ -33,8 +33,16 @@ pub fn SearchTool() -> Element {
 }
 
 fn check_match(query: &str, tool: &Tool) -> bool {
-    if tool.name.contains(query) {
-        return true;
-    }
-    false
+    let tool_str = format!(
+        "{} {} {} {}",
+        &tool.name,
+        &tool.description,
+        &tool.tags.join(" "),
+        &tool.doc_path
+    );
+
+    !query
+        .split(' ')
+        .filter(|word| !word.is_empty())
+        .any(|w| !tool_str.contains(w))
 }
