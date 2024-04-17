@@ -8,10 +8,10 @@
 }
 
 .top-bar-grad{
-    background: linear-gradient(45deg, rgb(58, 88, 255) 0%, rgb(40, 61, 178) 50%);
+    background: linear-gradient(-45deg, rgb(28, 43, 125) 0%, rgb(15, 22, 66) 50%);
 }
 
 .debug-color{
     /* Unity game engine is also using pink for debug */
-    background: rgb(232, 59, 194); 
+    background: rgb(255, 8, 207); 
 } 

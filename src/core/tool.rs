@@ -1,5 +1,6 @@
 type EXE = fn(inp: &str) -> Result<String, String>;
 
+#[derive(Clone, PartialEq)]
 pub struct Tool {
     pub name: &'static str,        // seeable on list and search
     pub description: &'static str, // expand to see
