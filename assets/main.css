@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'vazir';
 }
 
 .rust-gradient{
@@ -14,4 +15,9 @@
 .debug-color{
     /* Unity game engine is also using pink for debug */
     background: rgb(255, 8, 207); 
-} 
+}
+
+@font-face {
+    font-family: 'vazir'; /*a name to be used later*/
+    src: url('vazir.ttf'); /*URL to font*/
+}
