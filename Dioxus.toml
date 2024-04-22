@@ -8,7 +8,7 @@ name = "persian-tools-web"
 default_platform = "web"
 
 # `build` & `serve` dist path
-out_dir = "dist"
+out_dir = "docs"
 
 # resource (assets) file folder
 asset_dir = "assets"
@@ -31,7 +31,11 @@ watch_path = ["src", "assets"]
 
 # CSS style file
 
-style = ["/tailwind.css","/main.css"]
+# this will only work on github
+style = ["https://ali77gh.github.io/PersianToolsWeb/tailwind.css","https://ali77gh.github.io/PersianToolsWeb/main.css"]
+
+# use this for outside of github
+# style = ["/tailwind.css","/main.css"]
 
 # Javascript code file
 script = []

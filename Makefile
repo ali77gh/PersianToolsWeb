@@ -4,3 +4,7 @@ tailwind-watch:
 
 dioxus-watch:
 	dx serve 
+
+build:
+	rm -rf ./docs
+	dx build --release
