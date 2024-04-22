@@ -25,8 +25,17 @@ pub fn is_arabic(s: &str) -> Result<String, String> {
 pub fn to_arabic(s: &str) -> Result<String, String> {
     Ok(arabic_chars::to_arabic_chars(s))
 }
-pub fn get_bill_type(s: &str) -> Result<String, String> {
-    r_to_r(bill::Bill::from_str(s))
+pub fn get_bill_info(s: &str) -> Result<String, String> {
+    let b = match bill::Bill::from_str(s) {
+        Ok(x) => x,
+        Err(e) => return Err(e.to_string()),
+    };
+
+    Ok(format!(
+        "type:{:?},\nname:{}",
+        b.bill_id.r#type,
+        b.amount(bill::CurrencyType::Rials)
+    ))
 }
 
 pub fn fa_to_en(s: &str) -> Result<String, String> {
@@ -81,7 +90,6 @@ pub fn remove_half_space(s: &str) -> Result<String, String> {
 pub fn add_half_space(s: &str) -> Result<String, String> {
     Ok(half_space::add_half_space(s))
 }
-
 pub fn verify_iranian_legal_id(s: &str) -> Result<String, String> {
     r_to_v(legal_id::verify_iranian_legal_id(s))
 }
