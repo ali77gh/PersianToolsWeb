@@ -5,15 +5,15 @@
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://ali77gh.github.io/PersianToolsWeb/tailwind.css">
-<link rel="stylesheet" href="https://ali77gh.github.io/PersianToolsWeb/main.css">
+  <link rel="stylesheet" href="/PersianToolsWeb/tailwind.css">
+<link rel="stylesheet" href="/PersianToolsWeb/main.css">
 
 </head>
 <body>
   <div id="main"></div>
   <script type="module">
-    import init from "/./assets/dioxus/persian-tools-web.js";
-    init("/./assets/dioxus/persian-tools-web_bg.wasm").then(wasm => {
+    import init from "/PersianToolsWeb/assets/dioxus/persian-tools-web.js";
+    init("/PersianToolsWeb/assets/dioxus/persian-tools-web_bg.wasm").then(wasm => {
       if (wasm.__wbindgen_start == undefined) {
         wasm.main();
       }
