@@ -10,7 +10,7 @@ pub fn TopBar() -> Element {
             a {
                 class: "text-white text-xl p-2",
                 href: "https://github.com/persian-tools/rust-persian-tools",
-                "Github"
+                "گیت هاب"
             }
         }
     }

@@ -159,12 +159,12 @@ pub fn sheba_to_persian_bank_name(s: &str) -> Result<String, String> {
         Err(e) => Err(e.to_string()),
     }
 }
-pub fn time_diff(s: &str) -> Result<String, String> {
-    match rust_persian_tools::time_diff::time_diff_now(s) {
-        Ok(time_diff) => Ok(time_diff.long_form()),
-        Err(e) => Err(e.to_string()),
-    }
-}
+// pub fn time_diff(s: &str) -> Result<String, String> {
+//     match rust_persian_tools::time_diff::time_diff_now(s) {
+//         Ok(time_diff) => Ok(time_diff.long_form()),
+//         Err(e) => Err(e.to_string()),
+//     }
+// }
 pub fn url_fix(s: &str) -> Result<String, String> {
     r_to_r(url_fix::url_fix(s, None))
 }

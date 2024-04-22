@@ -1,5 +1,5 @@
 use crate::ui::top_bar::TopBar;
-use dioxus::{html::output, prelude::*};
+use dioxus::prelude::*;
 
 use crate::core::find_by_route;
 

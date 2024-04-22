@@ -4,7 +4,7 @@ use dioxus::prelude::*;
 #[component]
 pub fn Home() -> Element {
     rsx! {
-        div { class: "rust-gradient h-screen w-screen flex flex-col",
+        div { class: "rust-gradient h-screen w-full flex flex-col",
             TopBar {}
             SearchTool {}
         }

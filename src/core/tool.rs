@@ -1,11 +1,11 @@
-type EXE = fn(inp: &str) -> Result<String, String>;
+type Exe = fn(inp: &str) -> Result<String, String>;
 
 #[derive(Clone, PartialEq)]
 pub struct Tool {
     pub name: &'static str,        // seeable on list and search
     pub description: &'static str, // expand to see
     pub tags: Vec<&'static str>,   // used for search
-    pub exe: EXE,
+    pub exe: Exe,
 
     pub doc_path: &'static str, // expand to see
     pub route: &'static str,
@@ -18,7 +18,7 @@ impl Tool {
     pub fn new(
         route: &'static str,
         doc_path: &'static str,
-        exe: EXE,
+        exe: Exe,
         sample_input: &'static str,
         name: &'static str,
         tags: Vec<&'static str>,

@@ -12,14 +12,16 @@ pub fn SearchTool() -> Element {
 
     let tools_list = TOOLS.iter().map(|tool| {
         rsx! {
-            if check_match(&input_search.read(), &tool) {
+            if check_match(&input_search.read(), tool) {
                 ToolListItem { tool: tool.clone() }
             }
         }
     });
 
     rsx! {
-        div { dir: "rtl", class: "grow flex flex-col items-center",
+        div {
+            dir: "rtl",
+            class: "grow flex flex-col items-center rust-gradient",
             input {
                 dir: "rtl",
                 class: "rounded shadow-lg bg-white m-5 p-3",
