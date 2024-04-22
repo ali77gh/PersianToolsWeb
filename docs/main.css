@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'vazir';
+}
+
+.rust-gradient{
+    background: linear-gradient(-30deg, rgba(205,55,0,1) 0%, rgba(244,146,0,1) 35%);
+}
+
+.top-bar-grad{
+    background: linear-gradient(-45deg, rgb(28, 43, 125) 0%, rgb(15, 22, 66) 50%);
+}
+
+.debug-color{
+    background: rgb(255, 8, 207); 
+}
+
+@font-face {
+    font-family: 'vazir'; 
+    src: url('vazir.ttf'); 
+}

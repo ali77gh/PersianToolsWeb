@@ -1,6 +1,6 @@
 [package]
 name = "persian-tools-web"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Ali Ghahremani <alighahremani1377@gmail.com>"]
 edition = "2021"
 
