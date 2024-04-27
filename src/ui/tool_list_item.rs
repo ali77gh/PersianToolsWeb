@@ -27,7 +27,7 @@ pub fn ToolListItem(props: ToolWrapper) -> Element {
             div { class: "text-gray-700 text-base mb-4 mt-2", "{tool.description}" }
             div { {tags} }
             a {
-                href: "tool/{tool.route}",
+                href: "/PersianToolsWeb/tool/{tool.route}",
                 target: "_blank",
                 class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded justify-self-end",
                 "شروع"
