@@ -1,17 +1,13 @@
-# Development
+# Persian Tools Web
 
-1. Install npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-2. Install the tailwind css cli: https://tailwindcss.com/docs/installation
-3. Run the following command in the root of the project to start the tailwind CSS compiler:
+Web interface for [rust-persian-tools](https://github.com/persian-tools/rust-persian-tools) library.
 
-```bash
-npx tailwindcss -i ./input.css -o ./public/tailwind.css --watch
-```
+[<center>Open App</center>](https://ali77gh.github.io/PersianToolsWeb/)
 
-Run the following command in the root of the project to start the Dioxus dev server:
+Powerd by WASM and Dioxus hosted on Github pages.
 
-```bash
-dx serve --hot-reload
-```
+## Screenshots
 
-- Open the browser to http://localhost:8080
+<img src="./screenshot1.jpg"></img>
+<img src="./screenshot2.jpg"></img>
+<img src="./screenshot3.jpg"></img>
