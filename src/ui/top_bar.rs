@@ -9,7 +9,7 @@ pub fn TopBar() -> Element {
             div { class: "grow", "" }
             a {
                 class: "text-white text-xl p-2",
-                href: "https://ali77gh.github.io/PersianToolsWeb/",
+                href: "https://github.com/ali77gh/PersianToolsWeb",
                 "گیت هاب"
             }
         }
