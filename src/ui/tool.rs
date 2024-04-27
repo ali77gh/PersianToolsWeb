@@ -1,24 +1,20 @@
 use dioxus::prelude::*;
 
-use crate::core::find_by_route;
+use crate::core::tool::Tool;
 use crate::ui::top_bar::TopBar;
 
 #[component]
-pub fn ToolPage(segments: Vec<String>) -> Element {
-    let tool_name = segments.last().unwrap();
+pub fn ToolPage(tool: Tool) -> Element {
     rsx! {
         div { class: "rust-gradient h-screen w-screen flex flex-col",
             TopBar {}
-            ToolUse { tool_name }
+            ToolUse { tool }
         }
     }
 }
 
 #[component]
-pub fn ToolUse(tool_name: String) -> Element {
-    let tool = find_by_route(&tool_name)
-        .expect("this not gonna happen because 'name' is coming from same place");
-
+pub fn ToolUse(tool: Tool) -> Element {
     let mut input = use_signal(|| tool.sample_input.to_string());
 
     let tags = tool.tags.iter().map(|tag| {
