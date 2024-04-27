@@ -6,7 +6,7 @@ mod ui;
 
 use dioxus::prelude::*;
 use log::LevelFilter;
-use router::Route;
+use router::MyRouter;
 
 fn main() {
     // Init debug
@@ -18,6 +18,6 @@ fn main() {
 
 fn App() -> Element {
     rsx! {
-        Router::<Route> {}
+        MyRouter {}
     }
 }
