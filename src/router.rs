@@ -7,6 +7,6 @@ pub enum Route {
     #[route("/")]
     Home {},
 
-    #[route("/tool/:name")]
-    ToolPage { name: String },
+    #[route("/:..segments")]
+    ToolPage { segments: Vec<String> },
 }

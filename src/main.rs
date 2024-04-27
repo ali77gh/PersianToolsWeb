@@ -17,5 +17,7 @@ fn main() {
 }
 
 fn App() -> Element {
-    rsx! { Router::<Route> {} }
+    rsx! {
+        Router::<Route> {}
+    }
 }
