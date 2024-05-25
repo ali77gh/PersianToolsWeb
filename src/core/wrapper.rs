@@ -57,11 +57,18 @@ pub fn ar_to_fa(s: &str) -> Result<String, String> {
     Ok(digits::ar_to_fa(s))
 }
 pub fn extract_card_number(s: &str) -> Result<String, String> {
-    Ok(extract_card_number::extract_card_number(s)
+    let result = extract_card_number::extract_card_number(s)
         .iter()
         .map(|x| x.get_base())
         .collect::<Vec<&str>>()
-        .join(", "))
+        .join(" ");
+    let result = result
+        .as_bytes()
+        .chunks(4)
+        .map(std::str::from_utf8)
+        .collect::<Result<Vec<&str>, _>>()
+        .unwrap();
+    Ok(result.join("-"))
 }
 pub fn find_capital_by_province(s: &str) -> Result<String, String> {
     r_to_r(find_capital_by_province::find_capital_by_province(s).ok_or("not found"))
