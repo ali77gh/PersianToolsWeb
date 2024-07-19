@@ -14,13 +14,6 @@ Powered by WASM and Dioxus and hosted on Github pages.
 
 ## Tools sorted
 
-@merge "fa_to_en"\
-       "en_to_fa"\
-@merge "number_to_words"\
-       "words_to_number"\
-@merge "extract_card_number"\
-       "verify_card_number"\
-       "get_bank_name_by_card_number"\
 @merge "is_sheba_valid"\
        "sheba_to_bank_name"\
        "sheba_to_persian_bank_name"\
@@ -62,3 +55,9 @@ custom input for:\
 1. "time_diff"\
 
 show number of tools
+
+add link to rust-persian-tools
+
+SEO
+
+Clippy

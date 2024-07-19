@@ -38,12 +38,17 @@ pub fn get_bill_info(s: &str) -> Result<String, String> {
     ))
 }
 
-pub fn fa_to_en(s: &str) -> Result<String, String> {
-    Ok(digits::fa_to_en(s))
+// pub fn fa_to_en(s: &str) -> Result<String, String> { Ok(digits::fa_to_en(s)) }
+// pub fn en_to_fa(s: &str) -> Result<String, String> { Ok(digits::en_to_fa(s)) }
+// these two tools got merged
+pub fn digit_converter_fa_en(s: &str) -> Result<String, String> {
+    if persian_chars::is_persian(s, false) {
+        Ok(digits::fa_to_en(s))
+    } else {
+        Ok(digits::en_to_fa(s))
+    }
 }
-pub fn en_to_fa(s: &str) -> Result<String, String> {
-    Ok(digits::en_to_fa(s))
-}
+
 pub fn en_to_ar(s: &str) -> Result<String, String> {
     Ok(digits::en_to_ar(s))
 }
@@ -56,29 +61,36 @@ pub fn fa_to_ar(s: &str) -> Result<String, String> {
 pub fn ar_to_fa(s: &str) -> Result<String, String> {
     Ok(digits::ar_to_fa(s))
 }
+
 pub fn extract_card_number(s: &str) -> Result<String, String> {
-    let result = extract_card_number::extract_card_number(s)
+    let r = extract_card_number::extract_card_number(s)
         .iter()
-        .map(|x| x.get_base())
-        .collect::<Vec<&str>>()
-        .join(" ");
-    let result = result
-        .as_bytes()
-        .chunks(4)
-        .map(std::str::from_utf8)
-        .collect::<Result<Vec<&str>, _>>()
-        .unwrap();
-    Ok(result.join("-"))
+        .map(|x| x.get_base().to_string())
+        .map(|x| {
+            let is_valid = match verity_card_number::verify_card_number(&x) {
+                Ok(_) => "معتبر".to_string(),
+                Err(_) => "نا معتبر".to_string(),
+            };
+            let bank_name = match get_bank_name_by_card_number::get_bank_name_by_card_number(&x) {
+                Ok(x) => x.to_string(),
+                Err(_) => "نا مشخص".to_string(),
+            };
+
+            format!("{}, {}, {}", &x, is_valid, bank_name)
+        })
+        .collect::<Vec<String>>();
+
+    if r.is_empty() {
+        Err("یافت نشد".to_string())
+    } else {
+        Ok(r.join("\n"))
+    }
 }
+
 pub fn find_capital_by_province(s: &str) -> Result<String, String> {
     r_to_r(find_capital_by_province::find_capital_by_province(s).ok_or("not found"))
 }
 
-pub fn get_bank_name_by_card_number(s: &str) -> Result<String, String> {
-    r_to_r(get_bank_name_by_card_number::get_bank_name_by_card_number(
-        s,
-    ))
-}
 pub fn get_city_by_iran_national_id(s: &str) -> Result<String, String> {
     match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
         Ok(x) => Ok(x.get_city().to_string()),
@@ -121,9 +133,30 @@ pub fn get_plate_category(s: &str) -> Result<String, String> {
         Err(e) => Err(e.to_string()),
     }
 }
+
+// pub fn number_to_words(s: &str) -> Result<String, String> {
+//     r_to_r(number_to_words::number_to_words_str(s))
+// }
+// pub fn words_to_number(s: &str) -> Result<String, String> {
+//     r_to_r(words_to_number::words_to_number_str(
+//         s,
+//         &rust_persian_tools::words_to_number::Options::default(),
+//     ))
+// }
+// these two got merged
+// merged
 pub fn number_to_words(s: &str) -> Result<String, String> {
-    r_to_r(number_to_words::number_to_words_str(s))
+    let n = digits::fa_to_en(digits::ar_to_en(s));
+    if n.parse::<i64>().is_ok() {
+        r_to_r(number_to_words::number_to_words_str(n))
+    } else {
+        r_to_r(words_to_number::words_to_number_str(
+            s,
+            &words_to_number::Options::default(),
+        ))
+    }
 }
+
 pub fn has_persian(s: &str) -> Result<String, String> {
     Ok(persian_chars::has_persian(s, false).to_string())
 }
@@ -175,16 +208,7 @@ pub fn sheba_to_persian_bank_name(s: &str) -> Result<String, String> {
 pub fn url_fix(s: &str) -> Result<String, String> {
     r_to_r(url_fix::url_fix(s, None))
 }
-pub fn verify_card_number(s: &str) -> Result<String, String> {
-    r_to_v(verity_card_number::verify_card_number(s))
-}
 // ---
-pub fn words_to_number(s: &str) -> Result<String, String> {
-    r_to_r(words_to_number::words_to_number_str(
-        s,
-        &rust_persian_tools::words_to_number::Options::default(),
-    ))
-}
 
 fn r_to_r<T, E>(i: Result<T, E>) -> Result<String, String>
 where

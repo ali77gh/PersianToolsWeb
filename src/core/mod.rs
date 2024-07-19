@@ -8,46 +8,30 @@ use lazy_static::lazy_static;
 use crate::core::tool::Tool;
 
 lazy_static! {
-    pub static ref TOOLS: [Tool; 37] = {
+    pub static ref TOOLS: [Tool; 33] = {
         [
             Tool::new(
-                "fa_to_en","digits",fa_to_en, "۱۲۳۴",
-                "تبدیل عدد فارسی به انگلیسی", vec!["عدد","اعداد","تبدیل"],"۵۴۱ -> 541"
+                "fa_to_en","digits", digit_converter_fa_en, "۱۲۳۴",
+                "تبدیل عدد فارسی به انگلیسی و برعکس", vec!["عدد","اعداد","تبدیل"],"۵۴۱ -> 541"
             ),
             Tool::new(
-                "en_to_fa","digits",en_to_fa, "1234",
-                "تبدیل عدد انگلیسی به فارسی", vec!["عدد","اعداد","تبدیل"],"541 -> ۵۴۱"
+                "number_to_words","number_to_words", number_to_words, "300123987",
+                "عدد به حروف و برعکس", vec!["حروف","عدد"],"عدد رو به حروف تبدیل میکند"
             ),
             Tool::new(
-                "number_to_words","number_to_words",number_to_words, "300123987",
-                "عدد به حروف", vec!["حروف","عدد"],"عدد رو به حروف تبدیل میکند"
+                "extract_card_number","extract_card_number", extract_card_number, "شماره کارتم رو برات نوشتم: ۵۰۲۲-2910-7۰۸۷-۳۴۶۶",
+                "شماره کارت بانکی", vec!["بانک","مالی"],"استخراج, اعتبارسنجی و نام بانک شماره کارت بانکی را نمایش می دهد"
             ),
             Tool::new(
-                "words_to_number","words_to_number",words_to_number, "پنجاه و سه",
-                "حروف به عدد", vec![],"حروف را به عدد تبدیل میکند"
-            ),
-            Tool::new(
-                "extract_card_number","extract_card_number",extract_card_number, "شماره کارتم رو برات نوشتم: ۵۰۲۲-2910-7۰۸۷-۳۴۶۶",
-                "استخراج شماره کارت", vec!["بانک","مالی"],"در متن وارد شده شماره کارت پیدا میکند و به حروف انگلیسی تبدیل میکند"
-            ),
-            Tool::new(
-                "get_bank_name_by_card_number","get_bank_name_by_card_number",get_bank_name_by_card_number, "6219861000000000",
-                "بانک از کارت", vec!["بانک","مالی"],"شماره کارت را از ورودی گرفته و نام بانک مربوط به آن را نمایش میدهد"
-            ),
-            Tool::new(
-                "verify_card_number","verify_card_number",verify_card_number, "6037701689095443",
-                "اعتبار سنجی شماره کارت", vec!["بانک"],"شماره کارت از ورودی میگیرد و اعتبار سنجی میکند"
-            ),
-            Tool::new(
-                "is_sheba_valid","sheba",is_sheba_valid, "IR012345678A01234567890123",
+                "is_sheba_valid","sheba", is_sheba_valid, "IR012345678A01234567890123",
                 "اعتبار سنجی شبا", vec!["بانک","مالی"],"شماره شبا را از ورودی خوانده و ان را اعتبار سنجی میکند"
             ),
             Tool::new(
-                "sheba_to_bank_name","sheba",sheba_to_bank_name, "IR012345678A01234567890123",
+                "sheba_to_bank_name","sheba", sheba_to_bank_name, "IR012345678A01234567890123",
                 "بانک از شماره شب(انگلیسی)", vec!["بانک","مالی"],"شماره شبا را از ورودی خوانده و نام انگلیسی بانک مربوط به آن را نمایش میدهد"
             ),
             Tool::new(
-                "sheba_to_persian_bank_name","sheba",sheba_to_persian_bank_name, "IR012345678A01234567890123",
+                "sheba_to_persian_bank_name","sheba", sheba_to_persian_bank_name, "IR012345678A01234567890123",
                 "(فارسی)بانک از شماره شبا", vec!["مالی","بانک"],"شماره شبا را از ورودی خوانده و نام فارسی بانک مربوط به آن را نمایش میدهد"
             ),
             Tool::new(
