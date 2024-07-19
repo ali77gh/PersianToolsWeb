@@ -61,3 +61,5 @@ add link to rust-persian-tools
 SEO
 
 Clippy
+
+translate errors to persian (wrapper.rs)

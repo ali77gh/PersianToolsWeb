@@ -8,7 +8,7 @@ use lazy_static::lazy_static;
 use crate::core::tool::Tool;
 
 lazy_static! {
-    pub static ref TOOLS: [Tool; 33] = {
+    pub static ref TOOLS: [Tool; 29] = {
         [
             Tool::new(
                 "fa_to_en","digits", digit_converter_fa_en, "۱۲۳۴",
@@ -23,28 +23,12 @@ lazy_static! {
                 "شماره کارت بانکی", vec!["بانک","مالی"],"استخراج, اعتبارسنجی و نام بانک شماره کارت بانکی را نمایش می دهد"
             ),
             Tool::new(
-                "is_sheba_valid","sheba", is_sheba_valid, "IR012345678A01234567890123",
-                "اعتبار سنجی شبا", vec!["بانک","مالی"],"شماره شبا را از ورودی خوانده و ان را اعتبار سنجی میکند"
+                "is_sheba_valid","sheba", sheba, "IR012345678A01234567890123",
+                "شماره شبا", vec!["بانک","مالی"],"اعتبار سنجی و نام بانک مربوط به شماره شبا"
             ),
             Tool::new(
-                "sheba_to_bank_name","sheba", sheba_to_bank_name, "IR012345678A01234567890123",
-                "بانک از شماره شب(انگلیسی)", vec!["بانک","مالی"],"شماره شبا را از ورودی خوانده و نام انگلیسی بانک مربوط به آن را نمایش میدهد"
-            ),
-            Tool::new(
-                "sheba_to_persian_bank_name","sheba", sheba_to_persian_bank_name, "IR012345678A01234567890123",
-                "(فارسی)بانک از شماره شبا", vec!["مالی","بانک"],"شماره شبا را از ورودی خوانده و نام فارسی بانک مربوط به آن را نمایش میدهد"
-            ),
-            Tool::new(
-                "get_city_by_iran_national_id","get_city_by_iran_national_id",get_city_by_iran_national_id, "0021000000",
-                "کد ملی شهر", vec!["شهر"],"کد ملی را از ورودی گرفته و شهر مربوط به آن را نمایش میدهد"
-            ),
-            Tool::new(
-                "get_province_by_iran_national_id","get_province_by_iran_national_id",get_province_by_iran_national_id, "0021000000",
-                "کد ملی استان", vec!["استان"],"کد ملی را از ورودی گرفته و استان مربوط به آن را نمایش میدهد"
-            ),
-            Tool::new(
-                "verify_iranian_national_id","verify_iranian_national_id",verify_iranian_national_id, "68415941",
-                "کد ملی", vec!["اعتبار سنجی"],"این ابزار کد ملی را اعتبار سنجی میکند"
+                "get_city_by_iran_national_id", "get_city_by_iran_national_id", national_id, "0021000000",
+                "کد ملی", vec![], "اعتبار سنجی کد ملی و شهر و استان مربوط به آن"
             ),
             Tool::new(
                 "is_phone_valid","phone_number",is_phone_valid, "09121111111",

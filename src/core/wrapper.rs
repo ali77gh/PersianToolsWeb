@@ -38,9 +38,6 @@ pub fn get_bill_info(s: &str) -> Result<String, String> {
     ))
 }
 
-// pub fn fa_to_en(s: &str) -> Result<String, String> { Ok(digits::fa_to_en(s)) }
-// pub fn en_to_fa(s: &str) -> Result<String, String> { Ok(digits::en_to_fa(s)) }
-// these two tools got merged
 pub fn digit_converter_fa_en(s: &str) -> Result<String, String> {
     if persian_chars::is_persian(s, false) {
         Ok(digits::fa_to_en(s))
@@ -91,18 +88,33 @@ pub fn find_capital_by_province(s: &str) -> Result<String, String> {
     r_to_r(find_capital_by_province::find_capital_by_province(s).ok_or("not found"))
 }
 
-pub fn get_city_by_iran_national_id(s: &str) -> Result<String, String> {
-    match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
-        Ok(x) => Ok(x.get_city().to_string()),
-        Err(e) => Err(e.to_string()),
-    }
+// pub fn verify_iranian_national_id(s: &str) -> Result<String, String> {
+//     r_to_v(national_id::verify_iranian_national_id(s))
+// }
+// pub fn get_city_by_iran_national_id(s: &str) -> Result<String, String> {
+//     match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
+//         Ok(x) => Ok(x.get_city().to_string()),
+//         Err(e) => Err(e.to_string()),
+//     }
+// }
+// pub fn get_province_by_iran_national_id(s: &str) -> Result<String, String> {
+//     match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
+//         Ok(x) => Ok(x.get_province().to_string()),
+//         Err(e) => Err(e.to_string()),
+//     }
+// }
+pub fn national_id(s: &str) -> Result<String, String> {
+    let is_valid = match national_id::verify_iranian_national_id(&s) {
+        Ok(_) => "معتبر",
+        Err(_) => "نامعتبر",
+    };
+    let (city, province) = match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
+        Ok(x) => ((&x).get_city(), (&x).get_province()),
+        Err(_) => ("شهر نامشخص", "استان نامشخص"),
+    };
+    Ok(format!("{}\n{}\n{}", is_valid, city, province))
 }
-pub fn get_province_by_iran_national_id(s: &str) -> Result<String, String> {
-    match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
-        Ok(x) => Ok(x.get_province().to_string()),
-        Err(e) => Err(e.to_string()),
-    }
-}
+
 pub fn remove_half_space(s: &str) -> Result<String, String> {
     Ok(half_space::remove_half_space(s))
 }
@@ -111,9 +123,6 @@ pub fn add_half_space(s: &str) -> Result<String, String> {
 }
 pub fn verify_iranian_legal_id(s: &str) -> Result<String, String> {
     r_to_v(legal_id::verify_iranian_legal_id(s))
-}
-pub fn verify_iranian_national_id(s: &str) -> Result<String, String> {
-    r_to_v(national_id::verify_iranian_national_id(s))
 }
 pub fn get_plate_type(s: &str) -> Result<String, String> {
     match rust_persian_tools::number_plate::get_plate_info(s) {
@@ -134,17 +143,6 @@ pub fn get_plate_category(s: &str) -> Result<String, String> {
     }
 }
 
-// pub fn number_to_words(s: &str) -> Result<String, String> {
-//     r_to_r(number_to_words::number_to_words_str(s))
-// }
-// pub fn words_to_number(s: &str) -> Result<String, String> {
-//     r_to_r(words_to_number::words_to_number_str(
-//         s,
-//         &rust_persian_tools::words_to_number::Options::default(),
-//     ))
-// }
-// these two got merged
-// merged
 pub fn number_to_words(s: &str) -> Result<String, String> {
     let n = digits::fa_to_en(digits::ar_to_en(s));
     if n.parse::<i64>().is_ok() {
@@ -184,21 +182,18 @@ pub fn get_phone_province(s: &str) -> Result<String, String> {
         Err(e) => Err(e.to_string()),
     }
 }
-pub fn is_sheba_valid(s: &str) -> Result<String, String> {
-    r_to_v(sheba::is_sheba_valid(s))
+pub fn sheba(s: &str) -> Result<String, String> {
+    let is_valid = match sheba::is_sheba_valid(&s) {
+        Ok(()) => "معتبر".to_string(),
+        Err(_) => "نامعتبر".to_string(),
+    };
+    let (name, persian_name) = match sheba::get_sheba_info(&s) {
+        Ok(info) => (info.get_name(), info.get_persian_name()),
+        Err(_) => ("بانک نا مشخص", ""),
+    };
+    Ok(format!("{}\n{}\n{}", is_valid, name, persian_name))
 }
-pub fn sheba_to_bank_name(s: &str) -> Result<String, String> {
-    match sheba::get_sheba_info(s) {
-        Ok(x) => Ok(x.get_name().to_string()),
-        Err(e) => Err(e.to_string()),
-    }
-}
-pub fn sheba_to_persian_bank_name(s: &str) -> Result<String, String> {
-    match sheba::get_sheba_info(s) {
-        Ok(x) => Ok(x.get_persian_name().to_string()),
-        Err(e) => Err(e.to_string()),
-    }
-}
+
 // pub fn time_diff(s: &str) -> Result<String, String> {
 //     match rust_persian_tools::time_diff::time_diff_now(s) {
 //         Ok(time_diff) => Ok(time_diff.long_form()),
