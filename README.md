@@ -14,16 +14,6 @@ Powered by WASM and Dioxus and hosted on Github pages.
 
 ## Tools sorted
 
-@merge "is_sheba_valid"\
-       "sheba_to_bank_name"\
-       "sheba_to_persian_bank_name"\
-@merge "verify_iranian_national_id"\
-       "get_city_by_iran_national_id"\
-       "get_province_by_iran_national_id"\
-@merge "is_phone_valid"\
-       "get_operator_prefix"\
-       "get_phone_operator"\
-       "get_phone_province"\
 "add_commas"\
 @merge "to_persian"\
        "has_persian"\
@@ -54,9 +44,7 @@ custom input for:\
 1. "get_plate_category"\
 1. "time_diff"\
 
-show number of tools
-
-add link to rust-persian-tools
+add link to here from rust-persian-tools
 
 SEO
 

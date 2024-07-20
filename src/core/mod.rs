@@ -8,7 +8,7 @@ use lazy_static::lazy_static;
 use crate::core::tool::Tool;
 
 lazy_static! {
-    pub static ref TOOLS: [Tool; 29] = {
+    pub static ref TOOLS: [Tool; 26] = {
         [
             Tool::new(
                 "fa_to_en","digits", digit_converter_fa_en, "۱۲۳۴",
@@ -31,20 +31,8 @@ lazy_static! {
                 "کد ملی", vec![], "اعتبار سنجی کد ملی و شهر و استان مربوط به آن"
             ),
             Tool::new(
-                "is_phone_valid","phone_number",is_phone_valid, "09121111111",
-                "اعتبار سنجی شماره تلفن", vec!["موبایل","تلفن"],"نکته: این ابزار نیز مانند تمامی ابزار های دیگر این برنامه آفلاین است و منظور از اعتبار سنجی صرفا چک کردن مواردی است که به عنوان استاندارد برای شماره تلفن همراه مشخص شده"
-            ),
-            Tool::new(
-                "get_operator_prefix","phone_number",get_operator_prefix, "09121111111",
-                "پیش شماره", vec!["تلفن","موبایل"],"شماره تلفن همراه را از ورودی گرفته و پیش شماره را نمایش میدهد"
-            ),
-            Tool::new(
-                "get_phone_operator","phone_number",get_phone_operator, "09121111111",
-                "اپراتور از شماره تلفن", vec!["تلفن","موبایل"],"شماره تلفن همراه را از ورودی گرفته و اپراتور را نمایش میدهد"
-            ),
-            Tool::new(
-                "get_phone_province","phone_number",get_phone_province, "09121111111",
-                "استان شماره تلفن", vec!["تلفن","موبایل"],"شماره تلفن همراه را از ورودی گرفته و در صورت امکان استان مربوط به آن را نمایش میدهد"
+                "is_phone_valid","phone_number",phone_number, "09121111111",
+                "شماره موبایل", vec!["موبایل","تلفن"],"اعتبار سنجی و نمایش اپراتور و استان مربوط به شماره تلفن همراه"
             ),
             Tool::new(
                 "add_commas","commas/add_commas",add_commas,"80000000",

@@ -88,21 +88,6 @@ pub fn find_capital_by_province(s: &str) -> Result<String, String> {
     r_to_r(find_capital_by_province::find_capital_by_province(s).ok_or("not found"))
 }
 
-// pub fn verify_iranian_national_id(s: &str) -> Result<String, String> {
-//     r_to_v(national_id::verify_iranian_national_id(s))
-// }
-// pub fn get_city_by_iran_national_id(s: &str) -> Result<String, String> {
-//     match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
-//         Ok(x) => Ok(x.get_city().to_string()),
-//         Err(e) => Err(e.to_string()),
-//     }
-// }
-// pub fn get_province_by_iran_national_id(s: &str) -> Result<String, String> {
-//     match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
-//         Ok(x) => Ok(x.get_province().to_string()),
-//         Err(e) => Err(e.to_string()),
-//     }
-// }
 pub fn national_id(s: &str) -> Result<String, String> {
     let is_valid = match national_id::verify_iranian_national_id(&s) {
         Ok(_) => "معتبر",
@@ -164,24 +149,19 @@ pub fn is_persian(s: &str) -> Result<String, String> {
 pub fn to_persian_chars(s: &str) -> Result<String, String> {
     Ok(persian_chars::to_persian_chars(s))
 }
-pub fn is_phone_valid(s: &str) -> Result<String, String> {
-    r_to_v(phone_number::is_phone_valid(s))
+
+pub fn phone_number(s: &str) -> Result<String, String> {
+    let is_valid = match phone_number::is_phone_valid(&s) {
+        Ok(_) => "معتبر",
+        Err(_) => return Err("نامعتبر".to_string()), // TODO do same thing (return error on other functions (merged ones))
+    };
+    let (operator, province) = match phone_number::operators::get_phone_details(s) {
+        Ok(x) => ((&x).operator(), x.base()),
+        Err(_) => return Ok(is_valid.to_string()),
+    };
+    Ok(format!("{}\n{:?}\n{}", is_valid, operator, province))
 }
-pub fn get_operator_prefix(s: &str) -> Result<String, String> {
-    r_to_r(phone_number::get_operator_prefix(s))
-}
-pub fn get_phone_operator(s: &str) -> Result<String, String> {
-    match phone_number::operators::get_phone_details(s) {
-        Ok(x) => Ok(format!("{:?}", x.operator())),
-        Err(e) => Err(e.to_string()),
-    }
-}
-pub fn get_phone_province(s: &str) -> Result<String, String> {
-    match phone_number::operators::get_phone_details(s) {
-        Ok(x) => Ok(format!("{:?}", x.base())),
-        Err(e) => Err(e.to_string()),
-    }
-}
+
 pub fn sheba(s: &str) -> Result<String, String> {
     let is_valid = match sheba::is_sheba_valid(&s) {
         Ok(()) => "معتبر".to_string(),
