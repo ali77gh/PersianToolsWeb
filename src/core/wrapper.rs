@@ -16,14 +16,14 @@ pub fn add_ordinal_suffix(s: &str) -> Result<String, String> {
 pub fn remove_ordinal_suffix(s: &str) -> Result<String, String> {
     Ok(remove_ordinal_suffix::remove_ordinal_suffix(s))
 }
-pub fn has_arabic(s: &str) -> Result<String, String> {
-    Ok(arabic_chars::has_arabic(s).to_string())
-}
-pub fn is_arabic(s: &str) -> Result<String, String> {
-    Ok(arabic_chars::is_arabic(s).to_string())
-}
-pub fn to_arabic(s: &str) -> Result<String, String> {
-    Ok(arabic_chars::to_arabic_chars(s))
+pub fn to_arabic_chars(s: &str) -> Result<String, String> {
+    let has_arabic = bool_to_persian_string(arabic_chars::has_arabic(s));
+    let is_arabic = bool_to_persian_string(arabic_chars::is_arabic(s));
+    let to_arabic = arabic_chars::to_arabic_chars(s);
+    Ok(format!(
+        "عربی دارد: {}\n عربی است {}\n تبدیل به عربی {}",
+        has_arabic, is_arabic, to_arabic
+    ))
 }
 pub fn get_bill_info(s: &str) -> Result<String, String> {
     let b = match bill::Bill::from_str(s) {
@@ -44,19 +44,6 @@ pub fn digit_converter_fa_en(s: &str) -> Result<String, String> {
     } else {
         Ok(digits::en_to_fa(s))
     }
-}
-
-pub fn en_to_ar(s: &str) -> Result<String, String> {
-    Ok(digits::en_to_ar(s))
-}
-pub fn ar_to_en(s: &str) -> Result<String, String> {
-    Ok(digits::ar_to_en(s))
-}
-pub fn fa_to_ar(s: &str) -> Result<String, String> {
-    Ok(digits::fa_to_ar(s))
-}
-pub fn ar_to_fa(s: &str) -> Result<String, String> {
-    Ok(digits::ar_to_fa(s))
 }
 
 pub fn extract_card_number(s: &str) -> Result<String, String> {
@@ -140,14 +127,14 @@ pub fn number_to_words(s: &str) -> Result<String, String> {
     }
 }
 
-pub fn has_persian(s: &str) -> Result<String, String> {
-    Ok(persian_chars::has_persian(s, false).to_string())
-}
-pub fn is_persian(s: &str) -> Result<String, String> {
-    Ok(persian_chars::is_persian(s, false).to_string())
-}
 pub fn to_persian_chars(s: &str) -> Result<String, String> {
-    Ok(persian_chars::to_persian_chars(s))
+    let has_persian = bool_to_persian_string(persian_chars::has_persian(s, false));
+    let is_persian = bool_to_persian_string(persian_chars::is_persian(s, false));
+    let to_persian = persian_chars::to_persian_chars(s);
+    Ok(format!(
+        "فارسی دارد: {}\n فارسی است {}\n تبدیل به فارسی {}",
+        has_persian, is_persian, to_persian
+    ))
 }
 
 pub fn phone_number(s: &str) -> Result<String, String> {
@@ -202,5 +189,13 @@ where
     match i {
         Ok(_) => Ok("Ok".to_string()),
         Err(e) => Err(e.to_string()),
+    }
+}
+
+fn bool_to_persian_string(b: bool) -> &'static str {
+    if b {
+        "بله"
+    } else {
+        "خیر"
     }
 }

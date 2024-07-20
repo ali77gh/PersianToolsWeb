@@ -8,7 +8,7 @@ use lazy_static::lazy_static;
 use crate::core::tool::Tool;
 
 lazy_static! {
-    pub static ref TOOLS: [Tool; 26] = {
+    pub static ref TOOLS: [Tool; 18] = {
         [
             Tool::new(
                 "fa_to_en","digits", digit_converter_fa_en, "۱۲۳۴",
@@ -43,14 +43,6 @@ lazy_static! {
                 "تبدیل به حروف ویژه فارسی", vec!["فارسی","حروف ویژه"],"حروف ویژه ی عربی (ك یا ي یا ی) \nحروف ویژه ی عربی را به عنوان حروف غیر فارسی در نظر میگیرد"
             ),
             Tool::new(
-                "has_persian","persian_chars",has_persian, "abcdefمghij",
-                "وجود حروف ویژه ی فارسی", vec!["فارسی","حروف ویژه"],"حروف ویژه ی عربی (ك یا ي یا ی) \nحروف ویژه ی عربی را به عنوان حروف غیر فارسی در نظر میگیرد"
-            ),
-            Tool::new(
-                "is_persian","persian_chars",is_persian, "ابپتثaجچه",
-                "تمامیت حروف ویژه فارسی", vec!["فارسی","حروف ویژه"],"حروف ویژه ی عربی (ك یا ي یا ی) \nحروف ویژه ی عربی را به عنوان حروف غیر فارسی در نظر میگیرد"
-            ),
-            Tool::new(
                 "verify_iranian_legal_id","verify_iranian_legal_id",verify_iranian_legal_id, "10380284790",
                 "شناسه حقوقی", vec!["اعتبار سنجی"],"شناسه حقوقی را اعتبار سنجی میکند"
             ),
@@ -75,32 +67,8 @@ lazy_static! {
                 "نیم فاصله", vec!["تصحیح"],"در صورت نیاز فاصله ها را با نیم فاصله جایگزین میکند"
             ),
             Tool::new(
-                "to_arabic","arabic_chars",to_arabic, "ملک",
+                "to_arabic","arabic_chars",to_arabic_chars, "ملک",
                 "تبدیل به حروف عربی", vec!["عربی","حروف ویژه"],"حروف ویژه ی عربی (ك یا ي یا ی)"
-            ),
-            Tool::new(
-                "has_arabic","arabic_chars",has_arabic, "ملك",
-                "وجود حروف عربی", vec!["عربی","حروف ویژه"],"حروف ویژه ی عربی (ك یا ي یا ی)"
-            ),
-            Tool::new(
-                "is_arabic","arabic_chars",is_arabic, "ملك",
-                "تمامیت حروف عربی", vec!["عربی","حروف ویژه"],"حروف ویژه ی عربی (ك یا ي یا ی)"
-            ),
-            Tool::new(
-                "en_to_ar","digits",en_to_ar, "1234",
-                "تبدیل عدد انگلیسی به عربی", vec!["عدد","اعداد","تبدیل"],"451 -> ٤٥۱"
-            ),
-            Tool::new(
-                "ar_to_en","digits",ar_to_en, "٤٥",
-                "تبدیل عدد عربی به انگلیسی", vec!["عدد","اعداد","تبدیل"],"٤٥۱ -> 451"
-            ),
-            Tool::new(
-                "fa_to_ar","digits" ,fa_to_ar, "۴۵",
-                "تبدیل عدد فارسی به عربی", vec!["عدد","اعداد","تبدیل"],"۴۵۱ -> ٤٥۱"
-            ),
-            Tool::new(
-                "ar_to_fa","digits",ar_to_fa, "٤٥",
-                "تبدیل عدد عربی به فارسی", vec!["عدد","اعداد","تبدیل"],"٤٥۱ -> 451"
             ),
             Tool::new(
                 "remove_commas","commas/remove_commas",remove_commas,"80,000,000",
