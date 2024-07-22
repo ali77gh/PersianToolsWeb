@@ -96,21 +96,14 @@ pub fn add_half_space(s: &str) -> Result<String, String> {
 pub fn verify_iranian_legal_id(s: &str) -> Result<String, String> {
     r_to_v(legal_id::verify_iranian_legal_id(s))
 }
-pub fn get_plate_type(s: &str) -> Result<String, String> {
+pub fn get_plate_info(s: &str) -> Result<String, String> {
     match rust_persian_tools::number_plate::get_plate_info(s) {
-        Ok(plate) => Ok(format!("{:?}", plate.plate_type)),
-        Err(e) => Err(e.to_string()),
-    }
-}
-pub fn get_plate_province(s: &str) -> Result<String, String> {
-    match rust_persian_tools::number_plate::get_plate_info(s) {
-        Ok(plate) => Ok(plate.province),
-        Err(e) => Err(e.to_string()),
-    }
-}
-pub fn get_plate_category(s: &str) -> Result<String, String> {
-    match rust_persian_tools::number_plate::get_plate_info(s) {
-        Ok(plate) => r_to_r(plate.category.ok_or("not found")),
+        Ok(p) => Ok(format!(
+            "{:?} {} {}",
+            p.plate_type,
+            p.province,
+            p.category.unwrap_or("دسته بندی نامشخص".to_string())
+        )),
         Err(e) => Err(e.to_string()),
     }
 }

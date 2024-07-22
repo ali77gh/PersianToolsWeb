@@ -14,14 +14,12 @@ Powered by WASM and Dioxus and hosted on Github pages.
 
 ## TODO
 
-custom input for:\
+Custom input for:
 
-1. "get_plate_type"\
-1. "get_plate_province"\
-1. "get_plate_category"\
-1. "time_diff"\
+1. "get_plate_info"
+2. "time_diff"
 
-add link to here from rust-persian-tools
+Add link to here from rust-persian-tools
 
 SEO
 

@@ -8,7 +8,7 @@ use lazy_static::lazy_static;
 use crate::core::tool::Tool;
 
 lazy_static! {
-    pub static ref TOOLS: [Tool; 18] = {
+    pub static ref TOOLS: [Tool; 19] = {
         [
             Tool::new(
                 "fa_to_en","digits", digit_converter_fa_en, "۱۲۳۴",
@@ -82,19 +82,10 @@ lazy_static! {
                 "remove_ordinal_suffix","remove_ordinal_suffix",remove_ordinal_suffix,"پنجم",
                 "حذف کردن پسوند ترتیبی", vec![ "عدد", "ترتیب","فارسی", "حروف"],"پنجم را به پنج تبدیل میکند"
             ),
-            //------------
-            // Tool::new(
-            //     "get_plate_type","get_plate_type",get_plate_type, "12ب145ایران47",
-            //     "نوع پلاک", vec!["وسیله ی نقلیه","موتور","ماشین" ,"خودرو"],"این ابزار پلاک ماشین یا موتور را از ورودی خوانده و نوع آن را نمایش میدهد"
-            // ),
-            // Tool::new(
-            //     "get_plate_province","get_plate_province",get_plate_province, "12ب145ایران47",
-            //     "استان پلاک", vec!["وسیله ی نقلیه","موتور","ماشین" ,"خودرو"],"این ابزار پلاک ماشین یا موتور را از ورودی خوانده و استان آن را نمایش میدهد"
-            // ),
-            // Tool::new(
-            //     "get_plate_category","get_plate_category",get_plate_category, "12ب145ایران47",
-            //     "دسته بندی پلاک", vec!["وسیله ی نقلیه","موتور","ماشین" ,"خودرو"],"این ابزار پلاک ماشین یا موتور را از ورودی خوانده و دسته بندی آن را نمایش میدهد"
-            // ),
+            Tool::new(
+                "get_plate_info","get_plate_type",get_plate_info, "12ب145ایران47",
+                "پلاک ماشین و موتور", vec!["وسیله ی نقلیه","موتور","ماشین" ,"خودرو"],"این ابزار پلاک ماشین یا موتور را از ورودی خوانده و اطلاعات آن را نمایش میدهد"
+            ),
             // Tool::new(
             //     "time_diff","time_diff",time_diff, "?",
             //     "اختلاف زمان", vec!["زمان", "تاریخ"],"?"
