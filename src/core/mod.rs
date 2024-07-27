@@ -8,7 +8,7 @@ use lazy_static::lazy_static;
 use crate::core::tool::Tool;
 
 lazy_static! {
-    pub static ref TOOLS: [Tool; 19] = {
+    pub static ref TOOLS: [Tool; 21] = {
         [
             Tool::new(
                 "fa_to_en","digits", digit_converter_fa_en, "۱۲۳۴",
@@ -29,6 +29,18 @@ lazy_static! {
             Tool::new(
                 "get_city_by_iran_national_id", "get_city_by_iran_national_id", national_id, "0021000000",
                 "کد ملی", vec![], "اعتبار سنجی کد ملی و شهر و استان مربوط به آن"
+            ),
+            Tool::new(
+                "get_car_plate_province","get_plate_type",get_car_plate_province, "68",
+                "استان - پلاک ماشین", vec!["وسیله ی نقلیه","ماشین" ,"خودرو"],"دو رقم سمت راست پلاک ماشین را میگیرد و استان مروبط به آن را نمایش میدهد"
+            ),
+            Tool::new(
+                "get_car_plate_category","get_plate_type",get_car_plate_category, "ش",
+                "دسته بندی - پلاک ماشین", vec!["وسیله ی نقلیه","ماشین" ,"خودرو"],"حرف روی پلاک ماشین را میگیرد و دسته بندی مربوط به آن را نمایش میدهد"
+            ),
+            Tool::new(
+                "get_motorcycle_plate_province","get_plate_type",get_motorcycle_plate_province, "442",
+                "استان - پلاک موتور", vec!["وسیله ی نقلیه","موتور"],"سه رقم بالای پلاک موتور را میگیرد و استان مربوط به آن را نمایش میدهد"
             ),
             Tool::new(
                 "is_phone_valid","phone_number",phone_number, "09121111111",
@@ -81,10 +93,6 @@ lazy_static! {
             Tool::new(
                 "remove_ordinal_suffix","remove_ordinal_suffix",remove_ordinal_suffix,"پنجم",
                 "حذف کردن پسوند ترتیبی", vec![ "عدد", "ترتیب","فارسی", "حروف"],"پنجم را به پنج تبدیل میکند"
-            ),
-            Tool::new(
-                "get_plate_info","get_plate_type",get_plate_info, "12ب145ایران47",
-                "پلاک ماشین و موتور", vec!["وسیله ی نقلیه","موتور","ماشین" ,"خودرو"],"این ابزار پلاک ماشین یا موتور را از ورودی خوانده و اطلاعات آن را نمایش میدهد"
             ),
             // Tool::new(
             //     "time_diff","time_diff",time_diff, "?",

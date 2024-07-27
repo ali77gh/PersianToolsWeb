@@ -96,16 +96,31 @@ pub fn add_half_space(s: &str) -> Result<String, String> {
 pub fn verify_iranian_legal_id(s: &str) -> Result<String, String> {
     r_to_v(legal_id::verify_iranian_legal_id(s))
 }
-pub fn get_plate_info(s: &str) -> Result<String, String> {
-    match rust_persian_tools::number_plate::get_plate_info(s) {
-        Ok(p) => Ok(format!(
-            "{:?} {} {}",
-            p.plate_type,
-            p.province,
-            p.category.unwrap_or("دسته بندی نامشخص".to_string())
-        )),
-        Err(e) => Err(e.to_string()),
+
+pub fn get_car_plate_province(s: &str) -> Result<String, String> {
+    let s = digits::fa_to_en(s);
+    let ds = number_plate::codes::car_dataset();
+    let result = u32::from_str(&s).map_err(|_| "عدد وارد کنید".to_string())?;
+    if s.len() != 2 {
+        return Err("دو رقم وارد کنید".to_string());
     }
+    let result = ds.get(&result).ok_or("یافت نشد".to_string())?;
+    Ok(result.to_string())
+}
+pub fn get_car_plate_category(s: &str) -> Result<String, String> {
+    let car_ds = number_plate::codes::category_dataset();
+    let result = car_ds.get(&s).ok_or("یافت نشد".to_string())?;
+    Ok(result.to_string())
+}
+pub fn get_motorcycle_plate_province(s: &str) -> Result<String, String> {
+    let s = digits::fa_to_en(s);
+    let car_ds = number_plate::codes::motorcycle_dataset();
+    let result = u32::from_str(&s).map_err(|_| "عدد وارد کنید".to_string())?;
+    if s.len() != 3 {
+        return Err("سه رقم وارد کنید".to_string());
+    }
+    let result = car_ds.get(&result).ok_or("یافت نشد".to_string())?;
+    Ok(result.to_string())
 }
 
 pub fn number_to_words(s: &str) -> Result<String, String> {
