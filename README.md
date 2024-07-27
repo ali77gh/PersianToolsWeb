@@ -14,11 +14,6 @@ Powered by WASM and Dioxus and hosted on Github pages.
 
 ## TODO
 
-Custom input for:
-
-1. "get_plate_info"
-2. "time_diff"
-
 Add link to here from rust-persian-tools
 
 SEO
