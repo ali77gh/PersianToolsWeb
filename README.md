@@ -11,11 +11,3 @@ Powered by WASM and Dioxus and hosted on Github pages.
 <img src="./screenshot1.jpg"></img>
 <img src="./screenshot2.jpg"></img>
 <img src="./screenshot3.jpg"></img>
-
-## TODO
-
-Add link to here from rust-persian-tools
-
-SEO
-
-translate errors to persian (wrapper.rs)

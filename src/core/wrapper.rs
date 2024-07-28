@@ -32,7 +32,7 @@ pub fn get_bill_info(s: &str) -> Result<String, String> {
     };
 
     Ok(format!(
-        "type:{:?},\nname:{}",
+        "نوع:{:?},\nنام:{}",
         b.bill_id.r#type,
         b.amount(bill::CurrencyType::Rials)
     ))
@@ -53,11 +53,11 @@ pub fn extract_card_number(s: &str) -> Result<String, String> {
         .map(|x| {
             let is_valid = match verity_card_number::verify_card_number(&x) {
                 Ok(_) => "معتبر".to_string(),
-                Err(_) => "نا معتبر".to_string(),
+                Err(_) => "نامعتبر".to_string(),
             };
             let bank_name = match get_bank_name_by_card_number::get_bank_name_by_card_number(&x) {
                 Ok(x) => x.to_string(),
-                Err(_) => "نا مشخص".to_string(),
+                Err(_) => "نامشخص".to_string(),
             };
 
             format!("{}, {}, {}", &x, is_valid, bank_name)
@@ -72,7 +72,7 @@ pub fn extract_card_number(s: &str) -> Result<String, String> {
 }
 
 pub fn find_capital_by_province(s: &str) -> Result<String, String> {
-    r_to_r(find_capital_by_province::find_capital_by_province(s).ok_or("not found"))
+    r_to_r(find_capital_by_province::find_capital_by_province(s).ok_or("یافت نشد"))
 }
 
 pub fn national_id(s: &str) -> Result<String, String> {
