@@ -18,6 +18,4 @@ Add link to here from rust-persian-tools
 
 SEO
 
-Clippy
-
 translate errors to persian (wrapper.rs)

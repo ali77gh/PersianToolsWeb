@@ -76,12 +76,12 @@ pub fn find_capital_by_province(s: &str) -> Result<String, String> {
 }
 
 pub fn national_id(s: &str) -> Result<String, String> {
-    let is_valid = match national_id::verify_iranian_national_id(&s) {
+    let is_valid = match national_id::verify_iranian_national_id(s) {
         Ok(_) => "معتبر",
         Err(_) => "نامعتبر",
     };
     let (city, province) = match get_place_by_iran_national_id::get_place_by_iran_national_id(s) {
-        Ok(x) => ((&x).get_city(), (&x).get_province()),
+        Ok(x) => ((x).get_city(), (x).get_province()),
         Err(_) => ("شهر نامشخص", "استان نامشخص"),
     };
     Ok(format!("{}\n{}\n{}", is_valid, city, province))
@@ -146,23 +146,23 @@ pub fn to_persian_chars(s: &str) -> Result<String, String> {
 }
 
 pub fn phone_number(s: &str) -> Result<String, String> {
-    let is_valid = match phone_number::is_phone_valid(&s) {
+    let is_valid = match phone_number::is_phone_valid(s) {
         Ok(_) => "معتبر",
         Err(_) => return Err("نامعتبر".to_string()), // TODO do same thing (return error on other functions (merged ones))
     };
     let (operator, province) = match phone_number::operators::get_phone_details(s) {
-        Ok(x) => ((&x).operator(), x.base()),
+        Ok(x) => ((x).operator(), x.base()),
         Err(_) => return Ok(is_valid.to_string()),
     };
     Ok(format!("{}\n{:?}\n{}", is_valid, operator, province))
 }
 
 pub fn sheba(s: &str) -> Result<String, String> {
-    let is_valid = match sheba::is_sheba_valid(&s) {
+    let is_valid = match sheba::is_sheba_valid(s) {
         Ok(()) => "معتبر".to_string(),
         Err(_) => "نامعتبر".to_string(),
     };
-    let (name, persian_name) = match sheba::get_sheba_info(&s) {
+    let (name, persian_name) = match sheba::get_sheba_info(s) {
         Ok(info) => (info.get_name(), info.get_persian_name()),
         Err(_) => ("بانک نا مشخص", ""),
     };
