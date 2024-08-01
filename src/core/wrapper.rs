@@ -1,5 +1,6 @@
 use std::str::FromStr;
 
+use phone_number::operators::Operator;
 use rust_persian_tools::*;
 
 pub fn add_commas(s: &str) -> Result<String, String> {
@@ -21,7 +22,7 @@ pub fn to_arabic_chars(s: &str) -> Result<String, String> {
     let is_arabic = bool_to_persian_string(arabic_chars::is_arabic(s));
     let to_arabic = arabic_chars::to_arabic_chars(s);
     Ok(format!(
-        "عربی دارد: {}\n عربی است {}\n تبدیل به عربی {}",
+        "عربی دارد: {}\n عربی است: {}\n تبدیل به عربی: \n{}",
         has_arabic, is_arabic, to_arabic
     ))
 }
@@ -140,7 +141,7 @@ pub fn to_persian_chars(s: &str) -> Result<String, String> {
     let is_persian = bool_to_persian_string(persian_chars::is_persian(s, false));
     let to_persian = persian_chars::to_persian_chars(s);
     Ok(format!(
-        "فارسی دارد: {}\n فارسی است {}\n تبدیل به فارسی {}",
+        "فارسی دارد: {}\n فارسی است: {}\n تبدیل به فارسی: \n{}",
         has_persian, is_persian, to_persian
     ))
 }
@@ -154,7 +155,23 @@ pub fn phone_number(s: &str) -> Result<String, String> {
         Ok(x) => ((x).operator(), x.base()),
         Err(_) => return Ok(is_valid.to_string()),
     };
-    Ok(format!("{}\n{:?}\n{}", is_valid, operator, province))
+    Ok(format!(
+        "{}\n{}\n{}",
+        is_valid,
+        get_operator_persian_name(&operator),
+        province
+    ))
+}
+
+//TODO move this to rust persian tools
+fn get_operator_persian_name(op: &Operator) -> &'static str {
+    match op {
+        Operator::ShatelMobile => "شاتل",
+        Operator::MCI => "همراه اول",
+        Operator::Irancell => "ایرانسل",
+        Operator::Taliya => "تالیا",
+        Operator::RightTel => "رایتل",
+    }
 }
 
 pub fn sheba(s: &str) -> Result<String, String> {
