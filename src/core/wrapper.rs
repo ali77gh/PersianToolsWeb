@@ -32,7 +32,7 @@ pub fn get_bill_info(s: &str) -> Result<String, String> {
     };
 
     Ok(format!(
-        "نوع:{:?},\nنام:{}",
+        "نوع:{:?},\n مبلغ:{}",
         b.bill_id.r#type,
         b.amount(bill::CurrencyType::Rials)
     ))

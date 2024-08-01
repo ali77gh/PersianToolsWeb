@@ -36,6 +36,12 @@ pub fn ToolUse(tool: Tool) -> Element {
         }
     }
 
+    let out_lines = out.split('\n').map(|e| {
+        rsx! {
+            div { "{e}" }
+        }
+    });
+
     rsx! {
         div { class: "grow flex flex-col items-center",
             div {
@@ -52,7 +58,7 @@ pub fn ToolUse(tool: Tool) -> Element {
                     oninput: move |event| input.set(event.value())
                 }
                 div { class: "flex flex-row text-red-600", "{err}" }
-                div { "{out}" }
+                div { {out_lines} }
                 a {
                     href: "{tool.doc_link}",
                     target: "_blank",
