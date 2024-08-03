@@ -32,7 +32,7 @@ lazy_static! {
             ),
             Tool::new(
                 "get_car_plate_province","get_plate_type",get_car_plate_province, "68",
-                "استان - پلاک ماشین", vec!["وسیله ی نقلیه","ماشین" ,"خودرو"],"دو رقم سمت راست پلاک ماشین را میگیرد و استان مروبط به آن را نمایش میدهد"
+                "استان - پلاک ماشین", vec!["وسیله ی نقلیه","ماشین" ,"خودرو"],"دو رقم سمت راست پلاک ماشین را میگیرد و استان مربوط به آن را نمایش میدهد"
             ),
             Tool::new(
                 "get_car_plate_category","get_plate_type",get_car_plate_category, "ش",
